@@ -4,6 +4,7 @@
 #include "../include/cadastro.h"
 #include "../include/atualz_qtd.h"
 #include "../include/consulta.h"
+#include "../include/relatorio.h"
 
 void menu(Livro *livro) {
     int opcao;
@@ -28,7 +29,7 @@ void menu(Livro *livro) {
             case 1: cadastrarLivro(livro); break;
             case 2: alterarQtdLivro(); break;
             case 3: consultarLivro(); break;
-            case 4: "Relatorio"; break;
+            case 4: gerarRelatorioEstoque(); break;
             case 0: printf("Saindo...\n"); exit(0);
             default: printf("\nOpcao invalida.\n");
         }
