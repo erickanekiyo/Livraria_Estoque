@@ -37,13 +37,21 @@ void cadastrarLivro(Livro *livro) {
     printf("Preco unitario: R$ %.2f\n", livro->preco);
 
     printf("\nDeseja salvar este livro? (s/n): ");
-    scanf("%c", &confirmacao);
+    scanf(" %c", &confirmacao);
 
     if (confirmacao == 's' || confirmacao == 'S') {
-        printf("\nLivro salvo com sucesso!\n");
+        FILE *arquivo = fopen("data/livros.bin", "ab");
+        if (arquivo == NULL) {
+            printf("Erro ao abrir o arquivo para salvamento.\n");
+            return;
+        }
+
+        fwrite(livro, sizeof(Livro), 1, arquivo);
+        fclose(arquivo);
+
+        printf("\nLivro salvo com sucesso no arquivo!\n");
     } else {
-        printf("\nCadastro cancelado.\n");
-        
+        printf("\nCadastro cancelado.\n"); 
         memset(livro, 0, sizeof(Livro));
     }
 }
