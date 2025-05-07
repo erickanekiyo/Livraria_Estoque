@@ -1,11 +1,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 #include "tipos.h"
 #include "menu.h"
 
 int main() {
-    system("cls || clear");
+    setlocale(LC_ALL, "Portuguese");
     Livro livro;
 
     menu(&livro);
