@@ -8,7 +8,6 @@ int main() {
     system("cls || clear");
     Livro livro;
 
-    tela_menu();
     menu(&livro);
 
     return 0;
