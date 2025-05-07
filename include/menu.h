@@ -3,6 +3,6 @@
 
 #include "tipos.h"
 
-void menu();
+void menu(Livro *livro);
 
 #endif
