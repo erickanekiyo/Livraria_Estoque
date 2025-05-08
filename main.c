@@ -8,7 +8,7 @@
 int main() {
     setlocale(LC_ALL, "Portuguese");
     Livro livro;
-
+    system("cls || clear");
     menu(&livro);
 
     return 0;

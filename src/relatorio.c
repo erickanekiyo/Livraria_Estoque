@@ -20,13 +20,13 @@ void gerarRelatorioEstoque() {
 
     FILE *relatorio = fopen(nomeArquivo, "w");
     if (!relatorio) {
-        printf("Erro ao criar o arquivo de relatório.\n");
+        printf("Erro ao criar o arquivo de relatorio.\n");
         fclose(arquivo);
         return;
     }
 
     fprintf(relatorio, "=====================================================\n");
-    fprintf(relatorio, "================ RELATÓRIO DE ESTOQUE ===============\n");
+    fprintf(relatorio, "================ RELATORIO DE ESTOQUE ===============\n");
     fprintf(relatorio, "=====================================================\n\n");
 
     Livro livro;
@@ -46,5 +46,5 @@ void gerarRelatorioEstoque() {
     fclose(arquivo);
     fclose(relatorio);
 
-    printf("Relatório de estoque gerado com sucesso! Arquivo: %s\n", nomeArquivo);
+    printf("Relatorio de estoque gerado com sucesso! Arquivo: %s\n", nomeArquivo);
 }

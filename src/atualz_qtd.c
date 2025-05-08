@@ -8,7 +8,7 @@ void alterarQtdLivro() {
 
     FILE *arquivo = fopen("data/livros.bin", "r+b");
     if (arquivo == NULL) {
-        printf("Erro ao abrir o arquivo para alteração.\n");
+        printf("Erro ao abrir o arquivo para alteracao.\n");
         return;
     }
 
@@ -17,10 +17,10 @@ void alterarQtdLivro() {
     printf("=====================================================\n\n");
     printf("-----------------------------------------------------\n\n");
 
-    printf("Digite o tipo de operação (c para compra, v para venda): ");
+    printf("Digite o tipo de operacao (c para compra, v para venda): ");
     scanf(" %c", &tipoOperacao);
 
-    printf("Digite o código do livro para alteração de estoque: ");
+    printf("Digite o codigo do livro para alteracao de estoque: ");
     scanf("%d", &codigo);
 
     printf("Digite a quantidade de livros a ser alterada: ");
@@ -35,13 +35,13 @@ void alterarQtdLivro() {
             } else if (tipoOperacao == 'v' || tipoOperacao == 'V') {
                 livro.quantidade -= quantidade;
             } else {
-                printf("Operação inválida.\n");
+                printf("Operacao invalida.\n");
                 fclose(arquivo);
                 return;
             }
 
             if (livro.quantidade < 0) {
-                printf("Erro: a quantidade não pode ser negativa.\n");
+                printf("Erro: a quantidade nao pode ser negativa.\n");
                 fclose(arquivo);
                 return;
             }
@@ -55,7 +55,7 @@ void alterarQtdLivro() {
     }
 
     if (!sucesso) {
-        printf("Livro com código %d não encontrado.\n", codigo);
+        printf("Livro com codigo %d não encontrado.\n", codigo);
     }
 
     fclose(arquivo);
