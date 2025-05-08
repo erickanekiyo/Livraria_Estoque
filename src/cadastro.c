@@ -14,6 +14,19 @@ void cadastrarLivro(Livro *livro) {
     scanf("%d", &livro->codigo);
     getchar();
 
+    FILE *arquivo = fopen("data/livros.bin", "rb");
+    if (arquivo != NULL) {
+        Livro temp;
+        while (fread(&temp, sizeof(Livro), 1, arquivo)) {
+            if (temp.codigo == livro->codigo) {
+                printf("\nErro: já existe um livro com o código %d.\n", livro->codigo);
+                fclose(arquivo);
+                return;
+            }
+        }
+        fclose(arquivo);
+    }
+
     printf("Titulo: ");
     fgets(livro->titulo, TAM_NOME, stdin);
     livro->titulo[strcspn(livro->titulo, "\n")] = '\0';
@@ -26,9 +39,15 @@ void cadastrarLivro(Livro *livro) {
     fgets(livro->descricao, TAM_DESC, stdin);
     livro->descricao[strcspn(livro->descricao, "\n")] = '\0';
 
-    printf("Preco unitario: ");
-    scanf("%f", &livro->preco);
-    getchar();
+    char precoStr[50];
+    while (1) {
+        printf("Preco unitario: ");
+        fgets(precoStr, sizeof(precoStr), stdin);
+        if (sscanf(precoStr, "%f", &livro->preco) == 1 && livro->preco >= 0) break;
+        printf("Entrada invalida. Tente novamente.\n");
+    }
+
+    livro->quantidade = 0;
 
     printf("\nConfirme os dados do livro:\n");
     printf("Codigo: %d\n", livro->codigo);
@@ -41,7 +60,7 @@ void cadastrarLivro(Livro *livro) {
     scanf(" %c", &confirmacao);
 
     if (confirmacao == 's' || confirmacao == 'S') {
-        FILE *arquivo = fopen("data/livros.bin", "ab");
+        arquivo = fopen("data/livros.bin", "ab");
         if (arquivo == NULL) {
             printf("Erro ao abrir o arquivo para salvamento.\n");
             return;
@@ -52,8 +71,7 @@ void cadastrarLivro(Livro *livro) {
 
         printf("\nLivro salvo com sucesso no arquivo!\n");
     } else {
-        printf("\nCadastro cancelado.\n"); 
-        memset(livro, 0, sizeof(Livro));
+        printf("\nCadastro cancelado.\n");
     }
 }
 
